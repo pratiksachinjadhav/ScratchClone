@@ -73,19 +73,25 @@ export default function SpriteScratch() {
         if (!containerRef.current) return;
 
         const updateSize = () => {
-            const { width, height } = containerRef.current.getBoundingClientRect();
-            setContainerSize({ width, height });
+            requestAnimationFrame(() => {
+                if (containerRef.current) {
+                    const { width, height } = containerRef.current.getBoundingClientRect();
+                    setContainerSize({ width, height });
+                }
+            });
         };
 
         updateSize();
 
         const resizeObserver = new ResizeObserver(updateSize);
         resizeObserver.observe(containerRef.current);
+
         return () => {
             resizeObserver.disconnect();
-            clearTimeouts()
+            clearTimeouts();
         };
     }, []);
+
 
     const handleDragStart = useCallback((spriteId) => {
         setDraggingSprite(spriteId);

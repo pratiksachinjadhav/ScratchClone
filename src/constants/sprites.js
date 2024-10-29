@@ -11,6 +11,7 @@ export default [
         position: { x: 0, y: 0 },
         rotation: 0,
         actions: [],
+        positions: [{ x: 0, y: 0 }]
     },
     {
         id: dogId,
@@ -18,5 +19,6 @@ export default [
         position: { x: 140, y: 0 },
         rotation: 0,
         actions: [],
+        positions: [{ x: 0, y: 0 }]
     },
 ]

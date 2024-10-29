@@ -20,9 +20,11 @@ const spritesSlice = createSlice({
                 position: { x: 0, y: 0 },
                 rotation: 0,
                 actions: [],
+                positions: [{ x: 0, y: 0 }]
             });
-            state.selectedSpriteId = action.payload.id
+            state.selectedSpriteId = action.payload.id;
         },
+
         selectSprite: (state, action) => {
             state.selectedSpriteId = action.payload;
         },
@@ -39,6 +41,7 @@ const spritesSlice = createSlice({
             if (sprite) {
                 sprite.position.x += Math.cos((sprite.rotation * Math.PI) / 180) * steps;
                 sprite.position.y -= Math.sin((sprite.rotation * Math.PI) / 180) * steps;
+                sprite.positions.push({ x: sprite.position.x, y: sprite.position.y });
             }
         },
         goTo: (state, action) => {
@@ -46,6 +49,7 @@ const spritesSlice = createSlice({
             const sprite = state.sprites.find((s) => s.id === spriteId)
             sprite.position.x = x;
             sprite.position.y = y;
+            sprite.positions.push({ x: sprite.position.x, y: sprite.position.y });
         },
         rotate: (state, action) => {
             const { degree, spriteId } = action.payload;
