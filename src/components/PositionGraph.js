@@ -1,37 +1,19 @@
-
+// components/PositionGraph.js
 
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { useSelector } from "react-redux";
 import { Chart, registerables } from 'chart.js';
-import { X } from "lucide-react";
 
 Chart.register(...registerables);
 
 export default function PositionGraph({ spriteId }) {
-    // const sprite = useSelector((state) =>
-    //     state.sprites.sprites.find((sprite) => sprite.id === spriteId)
-    // );
+    const sprite = useSelector((state) =>
+        state.sprites.sprites.find((sprite) => sprite.id === spriteId)
+    );
 
-    // if (!sprite || sprite.positions.length < 2) {
-    //     return null; 
-    // }
-
-    const sprite = {
-        positions: [
-            {
-                x: 0,
-                y: 0
-            }, 
-            {
-                x: 100,
-                y: 50
-            }, 
-            {
-                x: 50,
-                y: 70
-            }, 
-        ]
+    if (!sprite || sprite.positions.length < 2) {
+        return null;
     }
 
     const data = {
